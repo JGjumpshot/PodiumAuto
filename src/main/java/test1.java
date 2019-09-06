@@ -2,15 +2,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class test1 {
     private WebDriver driver;
-
     @BeforeClass
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
@@ -19,11 +16,14 @@ public class test1 {
         driver.get("https://www.podium.com/");
         driver.manage().window().maximize();
     }
-
     @AfterClass
-    public void teardown() {
+    public void closeTest() {
         driver.close();
     }
+//    @AfterClass
+//    public void teardown() {
+//
+//    }
 
     @Test(priority = 1)
     public void watchDemo()
@@ -36,9 +36,20 @@ public class test1 {
         driver.findElement(By.id("MobilePhone")).sendKeys("333225467");
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        driver.navigate().to("https://www.podium.com");
+    }
+
+    @Test(priority = 2)
+    public void login() throws InterruptedException {
+        driver.findElement(By.cssSelector("#menu-item-1317 > a")).click();
+        driver.findElement(By.cssSelector("#login > form > div:nth-child(1) > input[type=text]")).sendKeys("2824443567");
+        driver.findElement(By.cssSelector("#login > form > div:nth-child(2) > input[type=password]")).sendKeys("T3st!ng");
+        driver.findElement(By.cssSelector("#login > form > div:nth-child(2) > a")).click();
+        driver.findElement(By.cssSelector("#login > form > button")).click();
+        Thread.sleep(10000);
     }
 }
