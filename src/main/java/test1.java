@@ -33,7 +33,7 @@ public class test1 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        driver.quit();
+
         driver.close();
     }
 }
