@@ -2,8 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -30,20 +28,13 @@ public class test1 {
     @Test(priority = 1)
     public void watchDemo()
     {
-        WebDriverWait wait = new WebDriverWait(driver, 11);
-        WebElement watchDemo = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#site-navigation > div.desktop-menu > div.right-menu > div.demo-header > div > a")));
-        watchDemo.click();
+        driver.findElement(By.cssSelector("#site-navigation > div.desktop-menu > div.right-menu > div.demo-header > div > a")).click();
+        driver.findElement((By.id("FirstName"))).sendKeys("Tristan");
+        driver.findElement(By.id("LastName")).sendKeys("Test");
+        driver.findElement(By.id("Email")).sendKeys("t@test.com");
+        driver.findElement(By.id("Company")).sendKeys("PODIUM");
+        driver.findElement(By.id("MobilePhone")).sendKeys("333225467");
 
-        WebElement firstName = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("FirstName")));
-        firstName.sendKeys("Tristan");
-        WebElement lastName = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("LastName")));
-        lastName.sendKeys("Test");
-        WebElement email = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Email")));
-        email.sendKeys("t@test.com");
-        WebElement company = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Company")));
-        company.sendKeys("PODIUM");
-        WebElement mobilePhone = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("MobilePhone")));
-        mobilePhone.sendKeys("333225467");
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
