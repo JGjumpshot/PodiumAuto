@@ -9,6 +9,7 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 import org.testng.asserts.Assertion;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class test1 {
@@ -19,7 +20,7 @@ public class test1 {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS) ;
         driver.get("https://www.podium.com/");
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
     }
     @AfterTest
     public void closeTest() {
@@ -75,6 +76,25 @@ public class test1 {
     }
 
     @Test (priority = 4)
+    public void loopLeads() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        List<WebElement> leadsLoop = driver.findElements(By.cssSelector("#menu-item-1309 > ul > li"));
+        WebElement hoverLeads = driver.findElement(By.cssSelector("#menu-item-1309 > a"));
+        int size = leadsLoop.size();
+        System.out.println(size);
+        actions.moveToElement(hoverLeads).perform();
+        for (int i = 1; i <= size; i++) {
+            //Thread.sleep(1000);
+
+            Thread.sleep(1000);
+            WebElement el = leadsLoop.get(i);
+            actions.moveToElement(el).click();
+            Thread.sleep(5000);
+            actions.moveToElement(hoverLeads).perform();
+        }
+    }
+
+    @Test (priority = 5)
     public void customers() {
         Actions actions = new Actions(driver);
         WebElement customers = driver.findElement(By.cssSelector("#menu-item-1314 > a"));
@@ -82,6 +102,17 @@ public class test1 {
         customers.click();
         String customersUrl = driver.getCurrentUrl();
         Assert.assertEquals(customersUrl, "https://www.podium.com/solutions/customers/");
+    }
+
+    @Test (priority =  6)
+    public void teams() {
+        Actions actions = new Actions(driver);
+        WebElement teams = driver.findElement(By.cssSelector("#menu-item-1357 > a"));
+        actions.moveToElement(teams).perform();
+        teams.click();
+        String teamsUrl = driver.getCurrentUrl();
+        Assert.assertEquals(teamsUrl, "https://www.podium.com/solutions/teams/");
+        driver.navigate().to("https://www.podium.com");
     }
 
 }
