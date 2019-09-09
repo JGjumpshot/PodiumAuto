@@ -16,25 +16,21 @@ import java.util.concurrent.TimeUnit;
 public class test1 {
     private WebDriver driver;
 
-    @BeforeTest
+    @BeforeClass //Happens before the test
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.get("https://www.podium.com/");
-        //driver.manage().window().maximize();
+        System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe"); //initializing properties for chromedriver
+        driver = new ChromeDriver(); //instantiating new chromedriver
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); //setting waits for elements to be found on the dom.
+        driver.get("https://www.podium.com/"); //getting the podium url
+        driver.manage().window().maximize(); //maximizing the window
     }
 
-    @AfterTest
+    @AfterClass //happens after the test
     public void closeTest() {
         driver.quit();
     }
-//    @AfterClass
-//    public void teardown() {
-//
-//    }
 
-    @Test(priority = 1)
+    @Test(priority = 1) //Test to watch the demo
     public void watchDemo() {
         driver.findElement(By.cssSelector("#site-navigation > div.desktop-menu > div.right-menu > div.demo-header > div > a")).click();
         driver.findElement((By.id("FirstName"))).sendKeys("Tristan");
@@ -51,7 +47,7 @@ public class test1 {
         driver.navigate().to("https://www.podium.com");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2) //Assert that incorrect phone number and password throws an error
     public void login() throws InterruptedException {
         driver.findElement(By.cssSelector("#menu-item-1317 > a")).click();
         driver.findElement(By.cssSelector("#login > form > div:nth-child(1) > input[type=text]")).sendKeys("2824443567");
@@ -67,7 +63,7 @@ public class test1 {
         driver.navigate().to("https://www.podium.com");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3) //Assert that leads url is correct
     public void leads() {
         Actions actions = new Actions(driver);
         WebElement leads = driver.findElement(By.cssSelector("#menu-item-1309 > a"));
@@ -77,7 +73,7 @@ public class test1 {
         Assert.assertEquals(leadsUrl, "https://www.podium.com/solutions/leads/");
     }
 
-    @Test(priority = 4)
+    @Test(priority = 4) //Test to verify that all tabs and urls are working.
     public void loopElements() {
         Actions actions = new Actions(driver);
         List<WebElement> leads = driver.findElements(By.cssSelector("#menu-item-1309 > ul > li"));
@@ -99,7 +95,7 @@ public class test1 {
         driver.navigate().to("https://www.podium.com");
     }
 
-    @Test(priority = 5)
+    @Test(priority = 5) //Verifying customers url is correct
     public void customers() {
         Actions actions = new Actions(driver);
         WebElement customers = driver.findElement(By.cssSelector("#menu-item-1314 > a"));
@@ -109,7 +105,7 @@ public class test1 {
         Assert.assertEquals(customersUrl, "https://www.podium.com/solutions/customers/");
     }
 
-    @Test(priority = 6)
+    @Test(priority = 6) //Verifying teams url is correct
     public void teams() {
         Actions actions = new Actions(driver);
         WebElement teams = driver.findElement(By.cssSelector("#menu-item-1357 > a"));
@@ -120,19 +116,14 @@ public class test1 {
         driver.navigate().to("https://www.podium.com");
     }
 
-    @Test(priority = 7)
+    @Test(priority = 7) //Entering iframe and opening text box
     public void clickPodiumButton() throws InterruptedException {
-        Thread.sleep(3000);
-//        Actions actions = new Actions(driver);
-//        driver.switchTo().frame("#podium-bubble");
-        driver.switchTo().frame(1);
-        Thread.sleep(2000);
+        Thread.sleep(2500);
+        driver.switchTo().frame(driver.findElement(By.id("podium-bubble")));
         WebElement podiumButton = driver.findElement(By.cssSelector("#main > div > div > div > div > button"));
         podiumButton.click();
-        Thread.sleep(4000);
-//        actions.moveToElement(podiumButton, 100, 100).click();
-//        podiumButton.isDisplayed();
-//        WebElement smsDisplayed = driver.findElement(By.cssSelector("#main > div > div > div > div > div > div > form > div.SendSmsPage__FormContainer > div.SendSmsPage__FormContent"));
-//        smsDisplayed.isDisplayed();
+        driver.switchTo().defaultContent();
+        Thread.sleep(3000);
     }
 }
+
