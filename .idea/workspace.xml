@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b010f9cf-8ebb-4614-a1d5-227ac6724a92" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/PodiumAuto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PodiumAuto.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test1.class" afterDir="false" />
@@ -60,7 +57,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.test1.loopLeads">
+  <component name="RunManager" selected="TestNG.test1.clickPodiumButton">
     <configuration name="test1" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test1" />
       <module name="PodiumAuto" />
@@ -73,6 +70,30 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="test1" />
       <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test1.clickPodiumButton" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="PodiumAuto" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="test1" />
+      <option name="METHOD_NAME" value="clickPodiumButton" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test1.loopElements" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="PodiumAuto" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="test1" />
+      <option name="METHOD_NAME" value="loopElements" />
+      <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
       <method v="2">
@@ -117,6 +138,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.test1.clickPodiumButton" />
+        <item itemvalue="TestNG.test1.loopElements" />
         <item itemvalue="TestNG.test1.loopLeads" />
         <item itemvalue="TestNG.test1.loopLeads (2)" />
         <item itemvalue="TestNG.test1.loopLeads (1)" />
@@ -176,7 +199,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567741658833</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Looping through elements">
+      <created>1567892934141</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1567892934141</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Looping through elements">
+      <created>1567892950021</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1567892950021</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,15 +236,16 @@
     <MESSAGE value="Added chromedriver.exe" />
     <MESSAGE value="commit" />
     <MESSAGE value="Refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
+    <MESSAGE value="Looping through elements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Looping through elements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/test1.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="6" />
+          <line>127</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

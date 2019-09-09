@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,14 +15,16 @@ import java.util.concurrent.TimeUnit;
 
 public class test1 {
     private WebDriver driver;
+
     @BeforeTest
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS) ;
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.get("https://www.podium.com/");
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
     }
+
     @AfterTest
     public void closeTest() {
         driver.quit();
@@ -32,8 +35,7 @@ public class test1 {
 //    }
 
     @Test(priority = 1)
-    public void watchDemo()
-    {
+    public void watchDemo() {
         driver.findElement(By.cssSelector("#site-navigation > div.desktop-menu > div.right-menu > div.demo-header > div > a")).click();
         driver.findElement((By.id("FirstName"))).sendKeys("Tristan");
         driver.findElement(By.id("LastName")).sendKeys("Test");
@@ -65,7 +67,7 @@ public class test1 {
         driver.navigate().to("https://www.podium.com");
     }
 
-    @Test (priority = 3)
+    @Test(priority = 3)
     public void leads() {
         Actions actions = new Actions(driver);
         WebElement leads = driver.findElement(By.cssSelector("#menu-item-1309 > a"));
@@ -75,26 +77,29 @@ public class test1 {
         Assert.assertEquals(leadsUrl, "https://www.podium.com/solutions/leads/");
     }
 
-    @Test (priority = 4)
-    public void loopLeads() throws InterruptedException {
+    @Test(priority = 4)
+    public void loopElements() {
         Actions actions = new Actions(driver);
-        List<WebElement> leadsLoop = driver.findElements(By.cssSelector("#menu-item-1309 > ul > li"));
-        WebElement hoverLeads = driver.findElement(By.cssSelector("#menu-item-1309 > a"));
-        int size = leadsLoop.size();
-        System.out.println(size);
-        actions.moveToElement(hoverLeads).perform();
+        List<WebElement> leads = driver.findElements(By.cssSelector("#menu-item-1309 > ul > li"));
+        int size = leads.size();
+        System.out.println(leads);
+        WebElement hover = driver.findElement(By.cssSelector("#menu-item-1309"));
         for (int i = 1; i <= size; i++) {
-            //Thread.sleep(1000);
-
-            Thread.sleep(1000);
-            WebElement el = leadsLoop.get(i);
-            actions.moveToElement(el).click();
-            Thread.sleep(5000);
-            actions.moveToElement(hoverLeads).perform();
+            try {
+                actions.moveToElement(hover).perform();
+                WebElement getIndex = driver.findElement(By.cssSelector(String.format("#menu-item-1309 > ul > li:nth-child(%s)", i)));
+                getIndex.click();
+            } catch (StaleElementReferenceException e) {
+                hover = driver.findElement(By.cssSelector("#menu-item-1309"));
+                actions.moveToElement(hover).perform();
+                WebElement getIndex = driver.findElement(By.cssSelector(String.format("#menu-item-1309 > ul > li:nth-child(%s)", i)));
+                getIndex.click();
+            }
         }
+        driver.navigate().to("https://www.podium.com");
     }
 
-    @Test (priority = 5)
+    @Test(priority = 5)
     public void customers() {
         Actions actions = new Actions(driver);
         WebElement customers = driver.findElement(By.cssSelector("#menu-item-1314 > a"));
@@ -104,7 +109,7 @@ public class test1 {
         Assert.assertEquals(customersUrl, "https://www.podium.com/solutions/customers/");
     }
 
-    @Test (priority =  6)
+    @Test(priority = 6)
     public void teams() {
         Actions actions = new Actions(driver);
         WebElement teams = driver.findElement(By.cssSelector("#menu-item-1357 > a"));
@@ -115,4 +120,16 @@ public class test1 {
         driver.navigate().to("https://www.podium.com");
     }
 
+    @Test(priority = 7)
+    public void clickPodiumButton() {
+//        Thread.sleep(3000);
+//        Actions actions = new Actions(driver);
+//        WebElement podiumButton = driver.findElement(By.cssSelector("#main > div > div > div > div > button"));
+//        podiumButton.isDisplayed();
+//        actions.moveToElement(podiumButton, 100, 100).click();
+//        WebElement smsDisplayed = driver.findElement(By.cssSelector("#main > div > div > div > div > div > div > form > div.SendSmsPage__FormContainer > div.SendSmsPage__FormContent"));
+//        smsDisplayed.isDisplayed();
+
+
+    }
 }
