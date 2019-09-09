@@ -57,7 +57,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.test1.clickPodiumButton">
+  <component name="RunManager" selected="TestNG.test1">
     <configuration name="test1" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test1" />
       <module name="PodiumAuto" />
