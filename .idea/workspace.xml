@@ -244,8 +244,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/test1.java</url>
-          <line>127</line>
-          <option name="timeStamp" value="12" />
+          <line>124</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

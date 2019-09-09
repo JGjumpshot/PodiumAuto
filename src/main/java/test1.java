@@ -121,15 +121,18 @@ public class test1 {
     }
 
     @Test(priority = 7)
-    public void clickPodiumButton() {
-//        Thread.sleep(3000);
+    public void clickPodiumButton() throws InterruptedException {
+        Thread.sleep(3000);
 //        Actions actions = new Actions(driver);
-//        WebElement podiumButton = driver.findElement(By.cssSelector("#main > div > div > div > div > button"));
-//        podiumButton.isDisplayed();
+//        driver.switchTo().frame("#podium-bubble");
+        driver.switchTo().frame(1);
+        Thread.sleep(2000);
+        WebElement podiumButton = driver.findElement(By.cssSelector("#main > div > div > div > div > button"));
+        podiumButton.click();
+        Thread.sleep(4000);
 //        actions.moveToElement(podiumButton, 100, 100).click();
+//        podiumButton.isDisplayed();
 //        WebElement smsDisplayed = driver.findElement(By.cssSelector("#main > div > div > div > div > div > div > form > div.SendSmsPage__FormContainer > div.SendSmsPage__FormContent"));
 //        smsDisplayed.isDisplayed();
-
-
     }
 }
